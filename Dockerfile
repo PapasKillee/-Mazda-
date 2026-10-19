@@ -14,9 +14,6 @@ WORKDIR /home/botuser
 COPY interactions /home/botuser/interactions
 COPY discord_reminder_bot /home/botuser/discord_reminder_bot
 
-RUN --mount=type=cache,target=/root/.cache/uv--mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --no-install-project
-
 ENV DATA_DIR=/home/botuser/data
 ENV SQLITE_LOCATION=/data/jobs.sqlite
 CMD ["uv", "run", "python", "-m", "discord_reminder_bot.main"]
