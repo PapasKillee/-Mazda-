@@ -11,6 +11,10 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 RUN useradd -m botuser && mkdir -p /home/botuser/data
 WORKDIR /home/botuser
 
+COPY pyproject.toml /home/botuser/pyproject.toml
+COPY README.md /home/botuser/README.md
+RUN uv sync --no-dev
+
 COPY interactions /home/botuser/interactions
 COPY discord_reminder_bot /home/botuser/discord_reminder_bot
 
